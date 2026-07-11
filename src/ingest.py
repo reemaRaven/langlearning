@@ -5,6 +5,7 @@ Run standalone with no API key required:
     python -m src.ingest
 """
 
+import shutil
 from pathlib import Path
 
 from langchain_chroma import Chroma
@@ -68,6 +69,9 @@ def main():
     documents = load_documents()
     chunks = split_documents(documents)
     print(f"Loaded {len(documents)} documents -> split into {len(chunks)} chunks")
+
+    if CHROMA_DIR.exists():
+        shutil.rmtree(CHROMA_DIR)
 
     embeddings = get_embeddings()
     vectorstore = build_vectorstore(chunks, embeddings)
