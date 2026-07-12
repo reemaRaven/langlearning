@@ -3,10 +3,10 @@
 A hands-on project for learning **LangChain**, **RAG pipelines**, **tool
 calling**, and **LangGraph** by building a real agent, one stage at a time.
 
-The end result: a CLI assistant that answers questions either by
-retrieving from a local knowledge base (RAG) or by calling a tool
-(calculator, current date/time, web search), routed dynamically by a
-LangGraph agent.
+The end result: an assistant (CLI or a Streamlit web UI) that answers
+questions either by retrieving from a local knowledge base (RAG) or by
+calling a tool (calculator, current date/time, web search), routed
+dynamically by a LangGraph agent.
 
 The knowledge base itself is study notes on these exact concepts — see
 `data/docs/` — so querying the assistant doubles as revision material.
@@ -64,6 +64,19 @@ python -m src.chat          # interactive chat
 Read the corresponding note in `data/docs/` alongside each stage:
 `01_llms_and_prompts.md`, `02_langchain_basics.md`, `03_rag_pipeline.md`,
 `04_tool_calling.md`, `05_langgraph_basics.md`, `06_agents_vs_chains.md`.
+
+## Web UI
+
+`app.py` puts a Streamlit chat interface on top of the same
+`build_graph()` agent used by `src/chat.py` — no separate logic to
+maintain. Needs `ANTHROPIC_API_KEY` (from `.env`, or pasted into the
+sidebar for that session only):
+
+```bash
+streamlit run app.py
+```
+
+Opens at `http://localhost:8501`.
 
 ## Tests
 
